@@ -1,0 +1,124 @@
+/* body + CSS cloud layer (no external image) */
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: linear-gradient(135deg,#74ebd5,#ACB6E5); /* gradient behind clouds */
+  padding: 20px;
+  text-align: center;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* cloud layer using pseudo-element so it doesn't affect layout */
+body::before{
+  content: "";
+  position: fixed;
+  top: -200px;
+  left: -50%;
+  width: 250%;
+  height: 700px;
+  pointer-events: none;
+  filter: blur(6px);
+  opacity: 0.9;
+  background:
+    radial-gradient(120px 60px at 10% 40%, rgba(255,255,255,0.95) 0%, transparent 40%),
+    radial-gradient(100px 50px at 30% 30%, rgba(255,255,255,0.95) 0%, transparent 35%),
+    radial-gradient(140px 70px at 50% 45%, rgba(255,255,255,0.95) 0%, transparent 40%),
+    radial-gradient(110px 55px at 70% 30%, rgba(255,255,255,0.95) 0%, transparent 35%),
+    radial-gradient(90px 45px at 90% 40%, rgba(255,255,255,0.95) 0%, transparent 35%);
+  animation: cloudMove 60s linear infinite;
+  z-index: 0;
+}
+
+@keyframes cloudMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-25%); }
+}
+
+/* make sure content is above the clouds */
+.container, .input-box, .cards, .card {
+  position: relative;
+  z-index: 1;
+}
+
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.input-box {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 15px;
+    background: #ff7b54;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff5722;
+}
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.card img {
+    width: 60px;
+    height: 60px;
+}
+
+.remove {
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    margin-top: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.remove:hover {
+    background: darkred;
+}
